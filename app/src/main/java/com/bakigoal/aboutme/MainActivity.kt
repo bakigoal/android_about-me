@@ -1,39 +1,32 @@
 package com.bakigoal.aboutme
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import com.bakigoal.aboutme.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var doneButton: Button
-    private lateinit var nicknameText: TextView
-    private lateinit var nicknameEdit: EditText
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        doneButton = findViewById(R.id.done_button)
-        nicknameText = findViewById(R.id.nickname_text)
-        nicknameEdit = findViewById(R.id.nickname_edit)
-
-        doneButton.setOnClickListener { setNickname() }
+        binding.doneButton.setOnClickListener { setNickname() }
     }
 
     private fun setNickname() {
-        val nickname = nicknameEdit.text
+        val nickname = binding.nicknameEdit.text
         if (nickname.isNotEmpty()) {
-            nicknameText.text = nickname
-            nicknameText.visibility = View.VISIBLE
-            nicknameEdit.visibility = View.GONE
-            doneButton.visibility = View.GONE
-            hideKeyboard(doneButton)
+            binding.nicknameText.text = nickname
+            binding.nicknameText.visibility = View.VISIBLE
+            binding.nicknameEdit.visibility = View.GONE
+            binding.doneButton.visibility = View.GONE
+            hideKeyboard(binding.doneButton)
         }
     }
 
