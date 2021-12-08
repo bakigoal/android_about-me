@@ -11,17 +11,19 @@ import com.bakigoal.aboutme.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private val myName = MyName("Ilmir Bakirov")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.myName = myName
 
         binding.doneButton.setOnClickListener { setNickname() }
     }
 
     private fun setNickname() = binding.apply {
         if (nicknameEdit.text.isNotEmpty()) {
-            nicknameText.text = nicknameEdit.text
+            myName?.nickname = nicknameEdit.text.toString()
             invalidateAll()
             nicknameText.visibility = View.VISIBLE
             nicknameEdit.visibility = View.GONE
