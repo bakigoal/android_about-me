@@ -19,14 +19,14 @@ class MainActivity : AppCompatActivity() {
         binding.doneButton.setOnClickListener { setNickname() }
     }
 
-    private fun setNickname() {
-        val nickname = binding.nicknameEdit.text
-        if (nickname.isNotEmpty()) {
-            binding.nicknameText.text = nickname
-            binding.nicknameText.visibility = View.VISIBLE
-            binding.nicknameEdit.visibility = View.GONE
-            binding.doneButton.visibility = View.GONE
-            hideKeyboard(binding.doneButton)
+    private fun setNickname() = binding.apply {
+        if (nicknameEdit.text.isNotEmpty()) {
+            nicknameText.text = nicknameEdit.text
+            invalidateAll()
+            nicknameText.visibility = View.VISIBLE
+            nicknameEdit.visibility = View.GONE
+            doneButton.visibility = View.GONE
+            hideKeyboard(doneButton)
         }
     }
 
